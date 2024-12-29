@@ -1,0 +1,58 @@
+{% extends 'usernavigation.html' %}
+{% load static %}
+{% block body %}
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- DataTable JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            paging: true,
+            searching: true,
+            ordering: true,
+            responsive: true
+        });
+    });
+</script>
+
+    <div class="container mt-5">
+    <h2 class="text-center">VIEW USERS</h2>
+            <HR>
+    <table class="table table=bordered" id="example">
+        <thead>
+        <tr>
+            <th>S. No.</th>
+            <th>Full Name</th>
+            <th>Email Id</th>
+            <th>Contact No</th>
+            <th>Branch</th>
+            <th>Designation</th>
+            <th>Action</th>
+        </tr>
+        {% for i in users %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+        <td style="text-transform: capitalize">{{ i.user.first_name }}{{i.user.last_name }}</td>
+        <td>{{ i.user.username }}</td>
+        <td>{{ i.contact }}</td>
+        <td>{{ i.branch }}</td>
+        <td>{{ i.designation }}</td>
+        <td><a href="{% url 'delete_user' i.user.id %}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete ?')">Delete </a></td>
+
+        </tr>
+        {% endfor %}
+        </thead>
+    </table>
+
+
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,97 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+{% if error == "no" %}
+    <script>
+        alert("Notes Uploaded Successfully!");
+        window.location=('{% url 'view_mynotes' %}');
+    </script>
+    {%  endif %}
+{% if error == "yes" %}
+    <script>
+        alert("Something went wrong. Please check your details and try again.");
+    </script>
+{% endif %}
+<style>
+    body {
+        background-color: #87CEFA; /* Light Sky Blue */
+        min-height: 100vh; /* Ensure the background covers the full viewport */
+        margin: 0; /* Remove default margin */
+    }
+</style>
+    <div class="container mt-3" style="background-color:whitesmoke">
+    <h2 class="text-center">UPLOAD NOTES</h2>
+            <HR>
+    <div class="row">
+
+        <div class="col-sm-6">
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label>Designation</label>
+                  <select class="form-control" name="designation">
+                      <option value="">--------Select Designation----------</option>
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                  </select>
+                <label>Branch</label>
+                <select class="form-control" name='branch'>
+                    <option value="">-------Select Branch-------</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="Civil">Civil</option>
+                    <option value="Mechanical">Mechanical</option>
+                </select>
+                <label>Semester</label>
+                  <select class="form-control" name="semester">
+                      <option value="">--------Select Semester----------</option>
+                    <option value="Semester I">Semester I</option>
+                    <option value="Semester II">Semester II</option>
+                    <option value="Semester III">Semester III</option>
+                    <option value="Semester IV">Semester IV</option>
+                    <option value="Semester V">Semester V</option>
+                    <option value="Semester VI">Semester VI</option>
+                    <option value="Semester VII">Semester VII</option>
+                    <option value="Semester VIII">Semester VIII</option>
+
+
+                  </select>
+                <label>Subject</label>
+                <input type="text" class="form-control" placeholder="Enter Subject Name" name="subject">
+                <label>Notes File</label>
+                <input type="file" class="form-control" name="notesFile">
+                <label>File Type</label>
+                <select class="form-control" name='filetype'>
+                    <option value="">-------Select File Type-------</option>
+                    <option value="PDF">PDF</option>
+                    <option value="PPT">PPT</option>
+                    <option value="Document">DOC/DOCX</option>
+                    <option value="Text">TXT</option>
+                    <option value="Image">Image</option>
+                    <option value="ZIP/RAR">ZIP/RAR</option>
+                </select>
+                <label>Description</label>
+                <textarea class="form-control" name="description"></textarea>
+
+
+                <input type="submit" class="btn btn-danger mt-4" value="SUBMIT">
+
+
+            </form>
+
+
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'images/upload.png' %}" style="width:90%;height: 550px" class="mt-2">
+        </div>
+
+    </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+

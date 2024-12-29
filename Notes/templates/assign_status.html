@@ -1,0 +1,46 @@
+{% extends 'admin_navigation.html' %}
+{% load static %}
+
+{% block body %}
+
+{% if error == "no" %}
+<script>
+    alert("Status updated successfully");
+    // Redirecting to the same page using the pid parameter
+    window.location=('{% url 'all_notes' %}')
+    
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something Went Wrong .....! Try Again.....");
+</script>
+{% endif %}
+
+
+
+<div class="container mt-5">
+    <h2 class="text-center">STATUS RESPONSE</h2>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        <label> Notes ID </label>
+        <input type="text" name="notesid" class="form-control" value="{{notes.id}}" readonly>
+        
+
+        <label>Status</label>
+        <select name="status" class="form-control">
+            <option value="Accept">Accept</option>
+            <option value="Reject">Reject</option>
+
+        </select>
+
+        <br>
+        <input type="submit" value="Submit" class="btn btn-primary form-control">
+
+
+    </form>
+</div>
+
+{% endblock %}

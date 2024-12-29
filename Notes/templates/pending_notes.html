@@ -1,0 +1,81 @@
+{% extends 'admin_navigation.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- DataTables Responsive CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
+<!-- DataTables Responsive JS -->
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<!-- Bootstrap 5 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- DataTable JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            paging: true,
+            searching: true,
+            ordering: true,
+            responsive: true
+        });
+    });
+</script>
+
+<div class="container mt-5">
+    <h2 class="text-center">VIEW PENDING NOTES</h2>
+    <hr>
+    <table class="table table-bordered" id="example">
+        <thead>
+            <tr>
+                <th>S. No.</th>
+                <th>Uploading By</th>
+                <th>Uploading Date</th>
+                <th>Branch</th>
+                <th>Subject</th>
+                <th>Semester</th>
+                <th>File Type</th>
+                <th>Description</th>
+                <th>Download Notes</th>
+                <th>Status</th>
+                <th>Assign Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in notes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.user.username }}</td>
+                <td>{{ i.uploadingdate }}</td>
+                <td>{{ i.branch }}</td>
+                <td>{{ i.subject }}</td>
+                <td>{{ i.semester }}</td>
+                <td>{{ i.filetype }}</td>
+                <td>{{ i.description }}</td>
+                <td><a href="{{ i.notesFile.url }}" class="btn btn-success" download>Download</a></td>
+                <td>{{ i.status }}</td>
+                <td><a href="{% url 'assign_status' i.id %}" class="btn btn-success">Assign&nbsp;Status</a></td>
+                <td><a href="{% url 'delete_notes' i.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this note?')">Delete</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12" class="text-center">No pending notes available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

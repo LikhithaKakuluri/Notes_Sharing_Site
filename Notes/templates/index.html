@@ -1,0 +1,63 @@
+{%  extends 'navigation.html' %}
+
+{% block body %}
+   {% load static %}
+   <style>
+      /* Styling for the image container */
+      .image {
+         width: 100%; /* Full width */
+         height: 800px; /* Desired height */
+         overflow: hidden; /* Crop overflow */
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      .image img {
+         width: 100%; /* Full width of the container */
+         height: 100%; /* Full height of the container */
+         object-fit: cover; /* Crop the image to fit */
+          background-position: center;
+          opacity: 0.6;
+      }
+   </style>
+   <div class="image">
+      <img src="{% static 'images/background.png' %}" alt="Background">
+   </div>
+
+
+    <h4 class="text-center text-danger mt-5"> Just 4 Steps to follow</h4>
+
+    <div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="box1">
+                <p class="halfcircle"><i class="fas fa-user-circle text-white mt-4" style="font-size:40px" ></i></p>
+                <p class="halfcircleBottom" style="font-size:20px">Create Account</p>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="box1">
+                <p class="halfcircle"><i class="fas fa-sign-in-alt text-white mt-4" style="font-size:40px" ></i></p>
+                <p class="halfcircleBottom" style="font-size:20px">Login</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="box1">
+                <p class="halfcircle"><i class="fas fa-upload text-white mt-4" style="font-size:40px" ></i></p>
+                <p class="halfcircleBottom" style="font-size:20px">Upload Notes</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="box1">
+                <p class="halfcircle"><i class="fas fa-download text-white mt-4" style="font-size:40px" ></i></p>
+                <p class="halfcircleBottom" style="font-size:20px">Download Notes</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <br>
+    <br>
+{% endblock %}
