@@ -73,15 +73,16 @@ WSGI_APPLICATION = 'NotesSharingProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+import os
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django1',
-        'USER': 'root',
-        'PASSWORD': 'likhitha',
-        'HOST': '127.0.0.1',  # or the hostname where your MySQL server is running
-        'PORT': '3306',      # or the port on which your MySQL server is listening
+        'NAME': os.getenv('DB_NAME', 'django1'),  # Database name
+        'USER': os.getenv('DB_USER', 'root'),  # MySQL username
+        'PASSWORD': os.getenv('DB_PASSWORD', 'likhitha'),  # MySQL password
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),  # Use 'localhost' if running locally
+        'PORT': os.getenv('DB_PORT', '3306'),  # Default MySQL port
     }
 }
 
