@@ -1,11 +1,10 @@
 asgiref==3.8.1
 Django==5.1.4
 lxml==4.9.4
-mysqlclient==2.2.6
 ply==3.11
 PyQt5==5.15.10
+PyQt5-sip
+sip 
 sqlparse==0.5.3
 tzdata==2024.2
-packaging==23.0  # Replace with a specific version
-PyQt5-sip==12.10.1  # Replace with a specific version
-sip==4.19.25  # Replace with a specific version
+mysql-connector-python
