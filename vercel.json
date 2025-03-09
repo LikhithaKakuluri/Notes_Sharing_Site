@@ -1,13 +1,16 @@
 {
-    "builds": [{
-        "src": "NotesSharingProject/wsgi.py",
+    "builds": [
+      {
+        "src": "manage.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    }],
+        "config": { "runtime": "python3.9" }
+      }
+    ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "NotesSharingProject/wsgi.py"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "manage.py"
+      }
     ]
-}
+  }
+  
